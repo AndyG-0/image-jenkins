@@ -78,13 +78,20 @@ USER ${user}
 
 COPY jenkins-support /usr/local/bin/jenkins-support
 COPY jenkins.sh /usr/local/bin/jenkins.sh
+
+USER root
 RUN chmod u+x /usr/local/bin/jenkins.sh
+USER ${user}
 #COPY tini-shim.sh /bin/tini
 COPY jenkins-plugin-cli.sh /bin/jenkins-plugin-cli
+USER root
 RUN chmod u+x  /bin/jenkins-plugin-cli/jenkins-plugin-cli.sh
+USER ${user}
 
 ENTRYPOINT ["/usr/local/bin/jenkins.sh"]
 
 # from a derived Dockerfile, can use `RUN install-plugins.sh active.txt` to setup $REF/plugins from a support bundle
 COPY install-plugins.sh /usr/local/bin/install-plugins.sh
+USER root
 RUN chmod u+x  /usr/local/bin/install-plugins.sh
+USER ${user}
