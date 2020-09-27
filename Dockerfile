@@ -81,11 +81,13 @@ COPY jenkins.sh /usr/local/bin/jenkins.sh
 
 USER root
 RUN chmod u+x /usr/local/bin/jenkins.sh
+RUN chown ${user}:${group} /usr/local/bin/jenkins.sh
 USER ${user}
 #COPY tini-shim.sh /bin/tini
-COPY jenkins-plugin-cli.sh /bin/jenkins-plugin-cli
+COPY jenkins-plugin-cli.sh /bin/jenkins-plugin-cli.sh
 USER root
-RUN chmod u+x  /bin/jenkins-plugin-cli/jenkins-plugin-cli.sh
+RUN chmod u+x /bin/jenkins-plugin-cli.sh
+RUN chown ${user}:${group} /bin/jenkins-plugin-cli.sh
 USER ${user}
 
 ENTRYPOINT ["/usr/local/bin/jenkins.sh"]
@@ -94,4 +96,5 @@ ENTRYPOINT ["/usr/local/bin/jenkins.sh"]
 COPY install-plugins.sh /usr/local/bin/install-plugins.sh
 USER root
 RUN chmod u+x  /usr/local/bin/install-plugins.sh
+RUN chown ${user}:${group} /usr/local/bin/install-plugins.sh
 USER ${user}
