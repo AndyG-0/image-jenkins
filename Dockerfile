@@ -44,7 +44,7 @@ RUN mkdir -p ${REF}/init.groovy.d
 
 # jenkins version being bundled in this docker image
 ARG JENKINS_VERSION
-ENV JENKINS_VERSION ${JENKINS_VERSION:-2.163}
+ENV JENKINS_VERSION ${JENKINS_VERSION:-2.222.4}
 
 # jenkins.war checksum, download will be validated using it
 ARG JENKINS_SHA=fdf78f2348d88e6abd7807a3d61c02f2c2faa6b917a2a6018eaf498afd4a9454
