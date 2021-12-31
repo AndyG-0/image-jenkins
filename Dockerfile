@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11:armv7l-debianslim-jdk-11.0.8_10
+FROM adoptopenjdk/openjdk11:armv7l-debianslim-jdk-11.0.13_8
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y git curl && curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash && apt-get install -y git-lfs unzip && git lfs install && rm -rf /var/lib/apt/lists/*
 
@@ -44,7 +44,7 @@ RUN mkdir -p ${REF}/init.groovy.d
 
 # jenkins version being bundled in this docker image
 ARG JENKINS_VERSION
-ENV JENKINS_VERSION ${JENKINS_VERSION:-2.222.4}
+ENV JENKINS_VERSION ${JENKINS_VERSION:-2.60.3}
 
 # jenkins.war checksum, download will be validated using it
 ARG JENKINS_SHA=6c95721b90272949ed8802cab8a84d7429306f72b180c5babc33f5b073e1c47c
