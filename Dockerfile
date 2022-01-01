@@ -32,22 +32,12 @@ VOLUME $JENKINS_HOME
 # or config file with your custom jenkins Docker image.
 RUN mkdir -p ${REF}/init.groovy.d
 
-# Use tini as subreaper in Docker container to adopt zombie processes
-# ARG TINI_VERSION=v0.16.1
-# COPY tini_pub.gpg ${JENKINS_HOME}/tini_pub.gpg
-# RUN curl -fsSL https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static-$(dpkg --print-architecture) -o /sbin/tini \
-#   && curl -fsSL https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static-$(dpkg --print-architecture).asc -o /sbin/tini.asc \
-#   && gpg --no-tty --import ${JENKINS_HOME}/tini_pub.gpg \
-#   && gpg --verify /sbin/tini.asc \
-#   && rm -rf /sbin/tini.asc /root/.gnupg \
-#   && chmod +x /sbin/tini
-
 # jenkins version being bundled in this docker image
 ARG JENKINS_VERSION
-ENV JENKINS_VERSION ${JENKINS_VERSION:-2.60.3}
+ENV JENKINS_VERSION ${JENKINS_VERSION:-2.319.1}
 
 # jenkins.war checksum, download will be validated using it
-ARG JENKINS_SHA=6c95721b90272949ed8802cab8a84d7429306f72b180c5babc33f5b073e1c47c
+ARG JENKINS_SHA=b847cf68825f2b81bd41981177b87e8e8ffa18a708085901c38f7ed2518f9027
                 
 
 # Can be used to customize where jenkins.war get downloaded from
